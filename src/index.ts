@@ -1,4 +1,4 @@
-import app from "./app";
+import app from "./infaestructure/web/app";
 import { ServerBootStrap } from "./infaestructure/bootstrap/server.bootstrap"; 
 import { connectDB } from "./infaestructure/config/data_base";
 
@@ -6,7 +6,7 @@ const serverBootStrap = new ServerBootStrap(app);
 
 /**
  * Funcion tipo clásica para iniciar el servidor
- */
+
 
 async function startServer(){
     try{
@@ -17,10 +17,10 @@ async function startServer(){
         console.log(error);
     }
 }
+    */
 
 /**
  * Función tipo flecha para iniciar el servidor
- */
 
 const startServerFlecha = async () =>{
     try{
@@ -30,6 +30,9 @@ const startServerFlecha = async () =>{
         console.log(error);
     }
 }
+
+ 
+*/
 
 /**
  * Función autoinvocada para iniciar el servidor
