@@ -6,17 +6,15 @@ import envs from './enviroment-vars';
 
 dotenv.config();
 
-export const AppDataSource = new DataSource ({
-    type: "mysql",
-    port:Number(envs.DB_PORT),
-    username: envs.DB_USER,
-    password: envs.DB_PASSWORD,
-    host: envs.DB_HOST,
-    database: envs.DB_NAME,
-    synchronize: true,
+export const AppDataSource = new DataSource({
+    type: "postgres", 
+    url: 'postgresql://neondb_owner:npg_ZCwHzv5IbtY8@ep-cool-breeze-ai6yqgug-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require', // La que empieza por postgresql://
+    ssl: {
+        rejectUnauthorized: false // Obligatorio para conectar con bases de datos en la nube como Neon
+    },
+    synchronize: true, // Esto creará las tablas automáticamente en la nube basándose en tus entidades
     logging: true,
-    entities: [User],
-
+    entities: [User], // Mantiene tu entidad de usuario para que se cree la tabla
 });
 
 //Metodo para conectar la DB
