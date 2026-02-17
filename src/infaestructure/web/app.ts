@@ -16,7 +16,8 @@ import userRoutes from "../routes/UserRoutes";
     this.app.get("/health", (req: Request, res: Response) => res.send("Health check OK!"));
 
 
-    this.app.use("/users", userRoutes); 
+    this.app.use("/users", userRoutes);
+    //this.app.use("/entidades", entidadRoutes);
 }
 
     getApp(){

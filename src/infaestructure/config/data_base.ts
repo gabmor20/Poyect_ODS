@@ -8,7 +8,7 @@ dotenv.config();
 
 export const AppDataSource = new DataSource({
     type: "postgres", 
-    url: 'postgresql://neondb_owner:npg_ZCwHzv5IbtY8@ep-cool-breeze-ai6yqgug-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require', // La que empieza por postgresql://
+    url: 'postgresql://neondb_owner:npg_wPCrHX5Ok0DR@ep-soft-shadow-aewfedl7-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require', // La que empieza por postgresql://
     ssl: {
         rejectUnauthorized: false // Obligatorio para conectar con bases de datos en la nube como Neon
     },
