@@ -1,5 +1,6 @@
 import express, {type Request, type Response} from "express";
 import userRoutes from "../routes/UserRoutes"; 
+import entidadRoutes from "../routes/EntidadRoutes"; 
 
 
   class App{
@@ -17,7 +18,7 @@ import userRoutes from "../routes/UserRoutes";
 
 
     this.app.use("/users", userRoutes);
-    //this.app.use("/entidades", entidadRoutes);
+    this.app.use("/entidades", entidadRoutes);
 }
 
     getApp(){
