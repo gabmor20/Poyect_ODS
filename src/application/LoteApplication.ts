@@ -26,8 +26,6 @@ export class LoteApplication {
     });
   }
 
-
-
   async getLoteById(id: number) {
     return this.lotePort.getLoteById(id);
   }

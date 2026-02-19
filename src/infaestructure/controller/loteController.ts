@@ -26,4 +26,41 @@ async createLote(req: Request, res: Response) {
     });
   }
 }
+
+async getAllLotes(req: Request, res: Response) {
+  try {
+    const lotes = await this.app.getAllLotes();
+    return res.status(200).json(lotes);
+  } catch (error) {
+    return res.status(500).json({
+      error: "Error al obtener lotes",
+      details: error instanceof Error ? error.message : error
+    });
+  }
+}
+
+async getLoteById(req: Request, res: Response) {
+  try {
+    const id = Number(req.params.id);
+
+    if (Number.isNaN(id)) {
+      return res.status(400).json({ error: "ID inválido" });
+    }
+
+    const lote = await this.app.getLoteById(id);
+
+    if (!lote) {
+      return res.status(404).json({ error: "Lote no encontrado" });
+    }
+
+    return res.status(200).json(lote);
+
+  } catch (error) {
+    return res.status(500).json({
+      error: "Error al obtener lote",
+      details: error instanceof Error ? error.message : error
+    });
+  }
+}
+
 }

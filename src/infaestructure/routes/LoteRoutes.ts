@@ -18,4 +18,15 @@ router.post("/", async (req, res) => {
     await loteController.createLote(req, res);
 });
 
+// Obtener todos los lotes
+router.get("/", (req, res) =>
+  loteController.getAllLotes(req, res)
+);
+
+// Obtener lote por id
+router.get("/:id", (req, res) =>
+  loteController.getLoteById(req, res)
+);
+
+
 export default router;
