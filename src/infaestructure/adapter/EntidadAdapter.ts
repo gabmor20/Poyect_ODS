@@ -40,15 +40,52 @@ export class EntidadAdapter implements EntidadPort {
             telefono: Number(entity.telefono)
         } as EntidadDomain;
     }
-    updateEntidad(id: number, user: Partial<EntidadDomain>): Promise<boolean> {
-        throw new Error("Method not implemented.");
+    /*
+    async updateEntidad(id: number, user: Partial<EntidadDomain>): Promise<boolean> {
+        const repo = this.dataSource.getRepository(EntidadEntity);
+        const result = await repo.update({ id_entidad: id }, user);
+        return result.affected !== 0;
+    }*/
+async updateEntidad(id: number, user: Partial<EntidadDomain>): Promise<boolean> {
+    const repo = this.dataSource.getRepository(EntidadEntity);
+
+    const existing = await repo.findOne({
+        where: { id_entidad: id }
+    });
+
+    if (!existing) return false;
+
+    // Mapear manualmente campos
+    if (user.nit !== undefined) existing.nit = user.nit;
+    if (user.razonSocial !== undefined) existing.razon_social = user.razonSocial;
+    if (user.usuario !== undefined) existing.usuario = user.usuario;
+    if (user.password !== undefined) existing.password = user.password;
+    if (user.tipoEntidad !== undefined) existing.tipo_entidad = user.tipoEntidad;
+    if (user.direccion !== undefined) existing.direccion = user.direccion;
+    if (user.email !== undefined) existing.email = user.email;
+    if (user.telefono !== undefined) existing.telefono = user.telefono;
+
+    await repo.save(existing);
+
+    return true;
+}
+
+
+    async deleteEntidad(id: number): Promise<boolean> {
+        const repo = this.dataSource.getRepository(EntidadEntity);
+        const result = await repo.delete({ id_entidad: id });
+        return result.affected !== 0;
     }
-    deleteEntidad(id: number): Promise<boolean> {
-        throw new Error("Method not implemented.");
-    }
-    getEntidadById(id: number): Promise<EntidadDomain | null> {
-        throw new Error("Method not implemented.");
-    }
+
+    async getEntidadById(id: number): Promise<EntidadDomain | null> {
+    const repo = this.dataSource.getRepository(EntidadEntity);
+    const entidad = await repo.findOne({
+        where: { id_entidad: id }
+    });
+    if (!entidad) return null;
+    return this.mapToDomain(entidad);
+}
+
     async getEntidadByNIT(nit: number): Promise<EntidadDomain | null> {
     const repo = this.dataSource.getRepository(EntidadEntity);
 
@@ -57,7 +94,6 @@ export class EntidadAdapter implements EntidadPort {
     });
 
     if (!entidad) return null;
-
     return this.mapToDomain(entidad);
 }
     async getEntidadByEmail(email: string): Promise<EntidadDomain | null> {

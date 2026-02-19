@@ -39,7 +39,13 @@ export class EntidadApplication {
     async updateEntidad(id: number, entidad: Partial<Entidad>): Promise<boolean>{
 
         const existingEntidad = await this.port.getEntidadById(id);
+        //log the existing entity for debugging
+        console.log("APP UPDATE RECIBE:", entidad);
 
+        if (!entidad) {
+        throw new Error("Payload undefined en Application");
+        }
+        //
         if(!existingEntidad){
             throw new Error("Entidad no encontrada");
         }

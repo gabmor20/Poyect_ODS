@@ -1,7 +1,7 @@
 import { EntidadApplication } from "../../application/EntidadApplication";
 import { EntidadAdapter } from "../adapter/EntidadAdapter";
 import { AppDataSource } from "../config/data_base";
-import { EntidadController } from "../controller/EntidadController";
+import { EntidadController } from "../controller/entidadController";
 import {Request, Response} from "express";
 import { Router } from "express";
 
@@ -28,5 +28,14 @@ router.get("/", async(req, res)=>{
     } catch (error) {
         res.status(500).json({message:"Error en la consulta de datos", error});
     }
-})
+});
+router.get("/:id", async (req, res) => {
+    await entidadController.getEntidadById(req, res);
+});
+
+// Agregar PUT
+router.put("/:id", (req, res) =>
+  entidadController.updateEntidad(req, res)
+);
+
 export default router;
