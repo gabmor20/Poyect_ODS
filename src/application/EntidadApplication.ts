@@ -40,7 +40,7 @@ export class EntidadApplication {
 
         const existingEntidad = await this.port.getEntidadById(id);
         //log the existing entity for debugging
-        console.log("APP UPDATE RECIBE:", entidad);
+        //console.log("APP UPDATE RECIBE:", entidad);
 
         if (!entidad) {
         throw new Error("Payload undefined en Application");

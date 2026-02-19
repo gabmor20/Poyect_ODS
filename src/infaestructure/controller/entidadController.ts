@@ -36,7 +36,8 @@ export class EntidadController {
   
 async updateEntidad(req: Request, res: Response): Promise<Response> {
   try {
-    console.log("BODY RECIBIDO:", req.body);
+    // Log del body recibido para depuración
+    //console.log("BODY RECIBIDO:", req.body);
 
     const id = Number(req.params.id);
 
@@ -45,8 +46,8 @@ async updateEntidad(req: Request, res: Response): Promise<Response> {
     }
 
     const payload = loadUpdateEntidadData(req.body);
-
-    console.log("PAYLOAD VALIDADO:", payload);
+    // Log del payload validado para depuración
+    //console.log("PAYLOAD VALIDADO:", payload);
 
     const updated = await this.app.updateEntidad(id, payload);
 

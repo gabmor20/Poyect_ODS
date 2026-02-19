@@ -6,7 +6,7 @@
 
     // Environment Settings - ESTO ES LO MÁS IMPORTANTE
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
     "target": "ES2022",
     "lib": ["ES2022"],
     "types": ["node"],

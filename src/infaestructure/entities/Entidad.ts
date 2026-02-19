@@ -1,4 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { OneToMany } from "typeorm";
+import { Lote } from "./Lote";
+
 
 @Entity("entidades")
 export class Entidad {
@@ -29,4 +32,8 @@ export class Entidad {
 
     @Column({ type: "bigint", nullable: true })
     telefono!: number;
+
+    @OneToMany(() => Lote, (lote) => lote.entidad)
+    lotes!: Lote[];
+
 }

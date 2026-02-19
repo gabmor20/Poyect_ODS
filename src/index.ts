@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import app from "./infaestructure/web/app";
 import { ServerBootStrap } from "./infaestructure/bootstrap/server.bootstrap"; 
 import { connectDB } from "./infaestructure/config/data_base";
