@@ -16,11 +16,23 @@ export class Lote {
   @Column({ type: "varchar", length: 255, unique: true })
   codigo!: string;
 
-  @Column({ type: "varchar", length: 500 })
-  descripcion!: string;
+  @Column({ type: "int" })
+  cantidad!: number;
+
+  @Column({ type: "varchar", length: 1 })
+  clasificacion!: string;
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   fecha_creacion!: Date;
+
+  @Column({ type: "date" })
+  fecha_vencimiento!: Date;
+
+  @Column({ type: "decimal", precision: 10, scale: 2 })
+  costo_total!: number;
+
+  @Column({ type: "varchar", length: 20, default: "Registrado" })
+  estado!: string;
 
   // 👇 CLAVE FORÁNEA EXPLÍCITA
   @Column({ type: "int" })

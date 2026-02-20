@@ -28,5 +28,9 @@ router.get("/:id", (req, res) =>
   loteController.getLoteById(req, res)
 );
 
+//Actualizar datos de lote
+router.put("/:id", (req, res) =>
+  loteController.updateLote(req, res)
+);
 
 export default router;

@@ -2,16 +2,22 @@ import joi from "joi";
 
 export type ReturnLoteData = {
   codigo: string;
-  descripcion: string;
+  cantidad: number;
+  clasificacion: string;
+  fechaVencimiento: Date;
   entidadId: number;
+  costoTotal: number;
 };
 
 export const loadLoteData = (data: any): ReturnLoteData => {
 
   const schema = joi.object({
-    codigo: joi.string().trim().min(2).required(),
-    descripcion: joi.string().trim().min(3).required(),
-    entidadId: joi.number().required()
+    codigo: joi.string().required(),
+    cantidad: joi.number().required(),
+    clasificacion: joi.string().length(1).required(),
+    fechaVencimiento: joi.date().required(),
+    entidadId: joi.number().required(),
+    costoTotal: joi.number().precision(2).required()
   });
 
   const { error, value } = schema.validate(data, {
@@ -19,9 +25,7 @@ export const loadLoteData = (data: any): ReturnLoteData => {
   });
 
   if (error) {
-    throw new Error(
-      error.details.map(d => d.message).join(", ")
-    );
+    throw new Error(error.details.map(d => d.message).join(", "));
   }
 
   return value;
