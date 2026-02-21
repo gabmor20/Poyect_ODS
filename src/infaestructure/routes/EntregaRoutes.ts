@@ -48,6 +48,13 @@ router.put(
   validateRequest,
   EntregaController.updateEstado
 );
+/**
+ * =========================================
+ * OBTENER TODAS LAS ENTREGAS
+ * =========================================
+ * GET /entregas
+ */
+router.get("/", EntregaController.getAll);
 
 /**
  * =========================================
@@ -70,5 +77,6 @@ router.get(
   "/:id",
   EntregaController.getById
 );
+
 
 export default router;

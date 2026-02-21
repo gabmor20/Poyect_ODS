@@ -4,6 +4,7 @@ import { AppDataSource } from "../config/data_base";
 import { EntidadController } from "../controller/entidadController";
 import {Request, Response} from "express";
 import { Router } from "express";
+import { EntregaController } from "../controller/entregaController";
 
 const router = Router();
 

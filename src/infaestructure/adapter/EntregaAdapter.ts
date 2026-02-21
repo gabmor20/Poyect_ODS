@@ -113,5 +113,12 @@ export class EntregaAdapter {
       relations: ["lotes", "beneficiario"],
     });
   }
+
+  async findAll() {
+  return await this.entregaRepo.find({
+    relations: ["beneficiario", "lotes"],
+    order: { id_entrega: "DESC" },
+  });
+}
 }
 

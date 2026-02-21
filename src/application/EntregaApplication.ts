@@ -78,4 +78,10 @@ export class EntregaApplication {
 
     return await this.entregaAdapter.findById(id_entrega);
   }
+   // =====================================
+  // OBTENER TODAS LAS ENTREGAS
+  // =====================================
+  async findAll() {
+  return await this.entregaAdapter.findAll();
+}
 }

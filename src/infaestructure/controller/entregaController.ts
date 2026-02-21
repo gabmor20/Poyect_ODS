@@ -116,4 +116,15 @@ export class EntregaController {
       });
     }
   }
+
+  static async getAll(req: Request, res: Response) {
+  try {
+    const entregas = await entregaAdapter.findAll();
+    return res.status(200).json(entregas);
+  } catch (error: any) {
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
+}
 }
