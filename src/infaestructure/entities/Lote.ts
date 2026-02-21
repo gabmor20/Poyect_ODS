@@ -6,6 +6,7 @@ import {
   JoinColumn,
 } from "typeorm";
 import { Entidad } from "./Entidad";
+import { Entrega } from "./Entrega";
 
 @Entity("lotes")
 export class Lote {
@@ -41,5 +42,18 @@ export class Lote {
   @ManyToOne(() => Entidad, (entidad) => entidad.lotes, { onDelete: "CASCADE" })
   @JoinColumn({ name: "id_entidad" })
   entidad!: Entidad;
+
+    // =========================
+  // RELACIÓN CON ENTREGA
+  // =========================
+
+  @Column({ type: "int", nullable: true })
+  id_entrega!: number;
+
+  @ManyToOne(() => Entrega, (entrega) => entrega.lotes, {
+    onDelete: "SET NULL",
+  })
+  @JoinColumn({ name: "id_entrega" })
+  entrega!: Entrega;
 }
 

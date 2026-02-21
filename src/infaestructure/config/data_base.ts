@@ -1,9 +1,11 @@
 import { DataSource } from 'typeorm';
 import dotenv from 'dotenv';
+import envs from './enviroment-vars';
 import {User} from '../entities/User';
 import { Entidad } from "../entities/Entidad";
-import envs from './enviroment-vars';
+import { Beneficiario } from "../entities/Beneficiario";
 import { Lote } from '../entities/Lote';
+import { Entrega } from '../entities/Entrega';
 
 
 dotenv.config();
@@ -16,9 +18,10 @@ export const AppDataSource = new DataSource({
     },
     synchronize: true, // Esto creará las tablas automáticamente en la nube basándose en tus entidades
     logging: true,
-    entities: [User, Entidad, Lote], // Mantiene tu entidad de usuario para que se cree la tabla
+    entities: [User, Entidad, Lote, Beneficiario, Entrega], // Mantiene tu entidad de usuario para que se cree la tabla
+    //entities: ["src/infaestructure/entities/*.ts"] //alterno
 });
-
+console.log("Entities registradas:", AppDataSource.options.entities);
 //Metodo para conectar la DB
 
 export const connectDB = async () =>{

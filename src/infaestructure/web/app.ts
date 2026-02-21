@@ -2,6 +2,8 @@ import express, {type Request, type Response} from "express";
 import userRoutes from "../routes/UserRoutes"; 
 import entidadRoutes from "../routes/EntidadRoutes"; 
 import loteRoutes from "../routes/LoteRoutes";
+import BeneficiarioRoutes from "../routes/BeneficiarioRoutes"
+import EntregaRoutes from "../routes/EntregaRoutes"
 
 
   class App{
@@ -21,6 +23,8 @@ import loteRoutes from "../routes/LoteRoutes";
     this.app.use("/users", userRoutes);
     this.app.use("/entidades", entidadRoutes);
     this.app.use("/lotes", loteRoutes);
+    this.app.use("/beneficiarios", BeneficiarioRoutes);
+    this.app.use("/entregas", EntregaRoutes);
     
 }
 
