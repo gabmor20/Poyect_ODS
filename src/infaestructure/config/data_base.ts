@@ -6,6 +6,7 @@ import { Entidad } from "../entities/Entidad";
 import { Beneficiario } from "../entities/Beneficiario";
 import { Lote } from '../entities/Lote';
 import { Entrega } from '../entities/Entrega';
+import { Incentivo } from '../entities/Incentivo';
 
 
 dotenv.config();
@@ -18,7 +19,7 @@ export const AppDataSource = new DataSource({
     },
     synchronize: true, // Esto creará las tablas automáticamente en la nube basándose en tus entidades
     logging: true,
-    entities: [User, Entidad, Lote, Beneficiario, Entrega], // Mantiene tu entidad de usuario para que se cree la tabla
+    entities: [User, Entidad, Lote, Beneficiario, Entrega, Incentivo], // Mantiene tu entidad de usuario para que se cree la tabla
     //entities: ["src/infaestructure/entities/*.ts"] //alterno
 });
 console.log("Entities registradas:", AppDataSource.options.entities);

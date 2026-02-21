@@ -2,6 +2,7 @@ import "reflect-metadata";
 import app from "./infaestructure/web/app";
 import { ServerBootStrap } from "./infaestructure/bootstrap/server.bootstrap"; 
 import { connectDB } from "./infaestructure/config/data_base";
+import IncentivoRoutes from "./infaestructure/routes/IncentivoRoutes";
 
 const serverBootStrap = new ServerBootStrap(app);
 
@@ -52,7 +53,7 @@ const startServerFlecha = async () =>{
     }
 })();
 
-
+app.use("/incentivos", IncentivoRoutes);
 
 /**
  * Invocación de funciones

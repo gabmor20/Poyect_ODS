@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { Beneficiario } from "./Beneficiario";
 import { Lote } from "./Lote";
+import { Incentivo } from "./Incentivo";
 
 export enum EstadoEntrega {
   PENDIENTE = "PENDIENTE",
@@ -64,4 +65,11 @@ export class Entrega {
 
   @OneToMany(() => Lote, (lote) => lote.entrega)
   lotes!: Lote[];
+
+  // =========================
+  // RELACIÓN CON INCENTIVOS
+  // =========================
+
+  @OneToMany(() => Incentivo, (incentivo) => incentivo.entrega)
+  incentivos!: Incentivo[];
 }

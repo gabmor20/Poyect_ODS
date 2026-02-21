@@ -1,11 +1,14 @@
 import { AppDataSource } from "..//config/data_base";
 import { Entrega, EstadoEntrega } from "../entities/Entrega";
 import { Lote } from "../entities/Lote";
+import { Incentivo } from "../entities/Incentivo";
+import { Repository } from "typeorm";
 
 export class EntregaAdapter {
 
   private entregaRepo = AppDataSource.getRepository(Entrega);
   private loteRepo = AppDataSource.getRepository(Lote);
+private incentivoRepo = AppDataSource.getRepository(Incentivo);
 
   // =====================================
   // CREAR ENTREGA
@@ -37,7 +40,6 @@ export class EntregaAdapter {
       });
 
       const entregaGuardada = await manager.save(entrega);
-
       for (const id of lotesIds) {
 
         const lote = await manager.findOne(Lote, {
@@ -49,7 +51,6 @@ export class EntregaAdapter {
         }
 
         lote.id_entrega = entregaGuardada.id_entrega;
-
         await manager.save(lote);
       }
 
@@ -88,7 +89,46 @@ export class EntregaAdapter {
       entrega.estado = EstadoEntrega.ENVIADO;
       entrega.fecha_entrega = new Date();
     }
+    // =============================
+// CALCULAR INCENTIVO
+// =============================
 
+const lotes = entrega.lotes;
+
+const costoTotalEntrega = lotes.reduce(
+  (acc, lote) => acc + Number(lote.costo_total),
+  0
+);
+
+const tieneA = lotes.some(l => l.clasificacion === "A");
+const tieneB = lotes.some(l => l.clasificacion === "B");
+
+let limiteHoras = 72;
+
+if (tieneA) {
+  limiteHoras = 5;
+} else if (tieneB) {
+  limiteHoras = 24;
+}
+
+const diffHoras =
+  (entrega.fecha_entrega.getTime() -
+   entrega.fecha_salida.getTime()) / (1000 * 60 * 60);
+
+const atiempo = diffHoras < limiteHoras;
+
+const descuentoSinIva = atiempo
+  ? costoTotalEntrega * 0.37
+  : 0.0;
+
+// Crear incentivo
+const incentivo = this.incentivoRepo.create({
+  id_entrega: entrega.id_entrega,
+  costo_total_entrega: costoTotalEntrega,
+  descuento_sin_iva: descuentoSinIva,
+  atiempo: atiempo,
+});
+    await this.incentivoRepo.save(incentivo);
     return await this.entregaRepo.save(entrega);
   }
 
