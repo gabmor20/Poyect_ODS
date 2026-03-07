@@ -3,7 +3,7 @@ import {
   Registration_Empresa,
   Registration_Entidad,
   Registration_Voluntario,
-} from "./Registration";
+} from "../Entities/Registration";
 
 export interface RegistrationPort {
   //Empresas

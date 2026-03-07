@@ -1,5 +1,5 @@
 import { LoteBase, LoteEmpresa, LoteVoluntario } from "../domain/Entities/Lote";
-import { LotePort } from "../domain/LotePort";
+import { LotePort } from "../domain/Ports/LotePort";
 
 type LoteData = Omit<LoteEmpresa, "idLote"> | Omit<LoteVoluntario, "idLote">;
 

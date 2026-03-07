@@ -21,6 +21,9 @@ export class Empresa {
   @Column({ type: "varchar", length: 255 })
   tipoEntidad!: string;
 
+    @Column({ type: "decimal", precision: 12, scale: 2, default: 0 })
+  pagoAnualTributario!: number;
+
   @OneToOne(() => User)
   @JoinColumn({ name: "user_id" })
   user!: User;

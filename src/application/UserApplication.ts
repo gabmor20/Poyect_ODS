@@ -1,7 +1,7 @@
 //Servicios del usuario: inciar sesión
 import bcrypt from "bcryptjs";
 import { User } from "../domain/Entities/User";
-import { UserPort } from "../domain/UserPort";
+import { UserPort } from "../domain/Ports/UserPort";
 import { AuthApplication } from "./AuthApplication";
 import { Request, Response } from "express";
 

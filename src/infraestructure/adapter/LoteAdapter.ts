@@ -31,14 +31,14 @@ export class LoteAdapter implements LotePort {
 
   private toEntityLote(data: Omit<LoteBase, "idLote">): LoteEntity {
     const loteEntity = new LoteEntity();
-    loteEntity.idDonante = data.idDonante;
+    loteEntity.idDonante= data.idDonante;
     loteEntity.tipoDonante = data.tipoDonante;
     loteEntity.alimento = data.alimento;
     loteEntity.clasificacion = data.clasificacion;
     loteEntity.fechaVencimiento = data.fechaVencimiento;
-    loteEntity.fechaRecibido = data.fechaDeRecibido ?? null; // 👈 maneja undefined
+    loteEntity.fechaRecibido = data.fechaDeRecibido ?? null; 
     loteEntity.estado = data.estado;
-    loteEntity.idEntrega = data.idEntrega ?? null; // 👈 maneja undefined
+    loteEntity.idEntrega = data.idEntrega ?? null; 
     return loteEntity;
   }
 

@@ -27,7 +27,7 @@ export class RegistroAdapter implements RegistrationPort {
     this.registroRepoEntidad = AppDataSource.getRepository(Entidad);
   }
 
-  //TRANSFORMA LA ENTIDAD DE INFRAESTRUCTURA(entities/user) al modelo de dominio(User)
+  
   private toDomain(user: User): MainRegistration {
     return {
       id: user.id_user,
@@ -41,7 +41,7 @@ export class RegistroAdapter implements RegistrationPort {
     };
   }
 
-  //Transformar el modelo de dominio a la entidad de infraestructura
+  
   private toEntity(user: Omit<MainRegistration, "id">): User {
     const userEntity = new User();
     userEntity.name_user = user.usuario;

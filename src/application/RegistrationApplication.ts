@@ -5,7 +5,7 @@ import {
   Registration_Voluntario,
   Registration_Entidad,
 } from "../domain/Entities/Registration";
-import { RegistrationPort } from "../domain/RegistrationPort";
+import { RegistrationPort } from "../domain/Ports/RegistrationPort";
 import { AuthApplication } from "./AuthApplication";
 
 type RegistrationData =

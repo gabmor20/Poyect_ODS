@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { User as UserDomain } from "../../domain/Entities/User";
 import { User as UserEntity } from "../entities/User";
-import { UserPort } from "../../domain/UserPort";
+import { UserPort } from "../../domain/Ports/UserPort";
 import { AppDataSource } from "../config/data-base";
 
 export class UserAdapter implements UserPort {
@@ -11,7 +11,7 @@ export class UserAdapter implements UserPort {
     this.userRepository = AppDataSource.getRepository(UserEntity);
   }
 
-  //TRANSFORMA LA ENTIDAD DE INFRAESTRUCTURA(entities/user) al modelo de dominio(User)
+  
   private toDomain(user: UserEntity): UserDomain {
     return {
       id: user.id_user,
